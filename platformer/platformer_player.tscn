@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4wdw07pr6vs0"]
+
+[ext_resource type="Texture2D" uid="uid://bxpexwkpm0ry7" path="res://assets/platformer/Clean-Retro-Lines-Player-Plain.png" id="1_h3lqk"]
+[ext_resource type="Script" path="res://platformer/PlatformerPlayer.cs" id="1_pa60f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv1r7"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7f2n"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38frx"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ickr7"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma8sg"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b4ap"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g02t5"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cnx6"]
+atlas = ExtResource("1_h3lqk")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8ish"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv1r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7f2n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38frx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ickr7")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma8sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b4ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g02t5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cnx6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iys8t"]
+size = Vector2(8, 14)
+
+[node name="PlatformerPlayer" type="CharacterBody2D"]
+script = ExtResource("1_pa60f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m8ish")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_iys8t")

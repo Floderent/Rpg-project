@@ -1,0 +1,111 @@
+[gd_scene load_steps=22 format=3 uid="uid://dib6lryaruuyl"]
+
+[ext_resource type="Texture2D" uid="uid://j4d7mujncy5g" path="res://assets/sprites/player/down1.png" id="1_50hjq"]
+[ext_resource type="Script" path="res://Player.cs" id="1_jdhup"]
+[ext_resource type="Texture2D" uid="uid://chl4hhghxkf87" path="res://assets/sprites/player/down2.png" id="2_b71nf"]
+[ext_resource type="Texture2D" uid="uid://dm5he4sh6vavg" path="res://assets/sprites/player/down3.png" id="3_axjpy"]
+[ext_resource type="Texture2D" uid="uid://cmvfw6ls64fwc" path="res://assets/sprites/player/down4.png" id="4_25mu3"]
+[ext_resource type="Texture2D" uid="uid://4moavgq3af48" path="res://assets/sprites/player/down5.png" id="5_f7bdk"]
+[ext_resource type="Texture2D" uid="uid://d2syfi3l7kcbd" path="res://assets/sprites/player/down6.png" id="6_ja7eh"]
+[ext_resource type="Texture2D" uid="uid://drxqx64ch75hr" path="res://assets/sprites/player/up1.png" id="7_mlgea"]
+[ext_resource type="Texture2D" uid="uid://dmwtddjs43n0e" path="res://assets/sprites/player/up2.png" id="8_kppuk"]
+[ext_resource type="Texture2D" uid="uid://byqogfh0dur7a" path="res://assets/sprites/player/up3.png" id="9_qjqxr"]
+[ext_resource type="Texture2D" uid="uid://b1p48aaerw2n3" path="res://assets/sprites/player/up4.png" id="10_goi83"]
+[ext_resource type="Texture2D" uid="uid://cm1442lj2r0e2" path="res://assets/sprites/player/up5.png" id="11_3qsfk"]
+[ext_resource type="Texture2D" uid="uid://c0qachxfhi5d1" path="res://assets/sprites/player/up6.png" id="12_k3imy"]
+[ext_resource type="Texture2D" uid="uid://dtfeys8a4lyq0" path="res://assets/sprites/player/right1.png" id="13_nx3x3"]
+[ext_resource type="Texture2D" uid="uid://dy70fi2jdtrqn" path="res://assets/sprites/player/right2.png" id="14_4q0dt"]
+[ext_resource type="Texture2D" uid="uid://dt03oupm5r75p" path="res://assets/sprites/player/right3.png" id="15_yoll1"]
+[ext_resource type="Texture2D" uid="uid://bgmhvrtdrkotn" path="res://assets/sprites/player/right4.png" id="16_o1rgj"]
+[ext_resource type="Texture2D" uid="uid://bjft1wa5ok05d" path="res://assets/sprites/player/right5.png" id="17_aoth6"]
+[ext_resource type="Texture2D" uid="uid://d0pbj24hhom44" path="res://assets/sprites/player/right6.png" id="18_gm42e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqj3i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_50hjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b71nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_axjpy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_25mu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f7bdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ja7eh")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_mlgea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kppuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qjqxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_goi83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3qsfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k3imy")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_nx3x3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4q0dt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_yoll1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_o1rgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_aoth6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gm42e")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpy1j"]
+radius = 7.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_jdhup")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oqj3i")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("CapsuleShape2D_dpy1j")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
