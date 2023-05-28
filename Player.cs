@@ -10,14 +10,32 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public int MaxHp = 10;
 	
-	public Vector2 ScreenSize;	
+	public Vector2 ScreenSize;
+	public Area2D ActionnableFinder;
 
 	
 	public override void _Ready()
 	{
-		ScreenSize = GetViewportRect().Size;		
+		ScreenSize = GetViewportRect().Size;
+		ActionnableFinder = GetNode<Area2D>("Direction/ActionnableFinder");
 	}
-	
+
+	public override async void _UnhandledInput(InputEvent @event)
+	{
+		base._UnhandledInput(@event);
+
+		if (Input.IsActionPressed("ui_accept"))
+		{
+			var actionnables = ActionnableFinder.GetOverlappingAreas();
+			if(actionnables.Count > 0)
+			{
+				((Actionnable)actionnables[0]).Action();				
+				return;
+			}
+		}				
+
+	}
+
 	public override void _Process(double delta)
 	{
 		var velocity = Vector2.Zero;

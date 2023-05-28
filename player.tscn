@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dib6lryaruuyl"]
+[gd_scene load_steps=23 format=3 uid="uid://dib6lryaruuyl"]
 
 [ext_resource type="Texture2D" uid="uid://j4d7mujncy5g" path="res://assets/sprites/player/down1.png" id="1_50hjq"]
 [ext_resource type="Script" path="res://Player.cs" id="1_jdhup"]
@@ -96,16 +96,32 @@ animations = [{
 radius = 7.0
 height = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljady"]
+radius = 17.0294
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_jdhup")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oqj3i")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_dpy1j")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+
+[node name="Direction" type="Marker2D" parent="."]
+
+[node name="ActionnableFinder" type="Area2D" parent="Direction"]
+position = Vector2(-7, 0)
+collision_layer = 0
+collision_mask = 16
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionnableFinder"]
+position = Vector2(7, 9)
+shape = SubResource("CircleShape2D_ljady")
