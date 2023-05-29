@@ -9,11 +9,31 @@ public partial class PlatformerPlayer : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+    public Area2D ActionnableFinder;
 
-	public override void _Process(double delta)
+
+    public override void _Ready()
+    {     
+        ActionnableFinder = GetNode<Area2D>("Direction/ActionnableFinder");
+    }
+    public override void _Process(double delta)
 	{
 		ChangeAnimation();
+		CollectObject();
 	}
+
+	private void CollectObject()
+	{
+        var actionnables = ActionnableFinder.GetOverlappingAreas();
+        if (actionnables.Count > 0)
+        {
+			foreach(Area2D actionnableArea in actionnables)
+			{
+				var actionnable = (Actionnable)actionnableArea;
+				actionnable.Action();
+			}            
+        }
+    }
 	
 	private void ChangeAnimation() {
 		

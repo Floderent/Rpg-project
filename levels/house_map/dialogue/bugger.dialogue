@@ -1,9 +1,12 @@
 ~ start
 
+set State.CanMove = false
 Debugger: Bienvenue dans la maison des devs, explore cette maison et analyse chacune des disquettes qui te donneront toutes les informations nécessaires pour accomplir les challenges et rassembler les 3 pièces du puzzle. Attention Bugger a envoyé ses fidèles virus afin de t’empêcher de réussir ta quête !
 Debugger: Es-tu prêt à tenter l'aventure ?
 - Oui
 	do emit("GoToDevHouse")
-- Non => END
-
+- Non 
+	set State.CanMove = true
+	=> END
+set State.CanMove = true
 => END

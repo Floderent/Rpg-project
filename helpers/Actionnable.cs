@@ -1,7 +1,4 @@
-using DialogueManagerRuntime;
 using Godot;
-using System;
-using System.Threading.Tasks;
 
 public partial class Actionnable : Area2D
 {	
@@ -10,11 +7,14 @@ public partial class Actionnable : Area2D
 	[Export]
 	public string DialogueStart = "start";
 
-
 	public void Action()
-	{
-		DialogueManager.ShowExampleDialogueBalloon(DialogueResource, DialogueStart);		
+	{		
+		PackedScene balloonScene = ((PackedScene)ResourceLoader.Load("res://helpers/balloon.tscn"));
+		Node balloonNode = balloonScene.Instantiate();		
+		AddChild(balloonNode);
+		balloonNode.Call("start", DialogueResource, DialogueStart);		
 	}
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

@@ -2,9 +2,8 @@ using Godot;
 using System;
 
 public partial class State : Node
-{
-	
-	public static string DevHouseStatus = "";
+{	
+	public bool CanMove = true;
 
 	
 	// Called when the node enters the scene tree for the first time.
