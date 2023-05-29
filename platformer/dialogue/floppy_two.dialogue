@@ -1,0 +1,7 @@
+~ start
+
+set State.CanMove = false
+Deuxième disquette ancestrale: Le langage que recherche le Gardien Floppy est un langage compilé et interprété
+set State.FloppyTwoEnabled = true
+set State.CanMove = true
+=> END

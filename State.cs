@@ -5,6 +5,10 @@ public partial class State : Node
 {	
 	public bool CanMove = true;
 
+	public bool FloppyOneEnabled = true; 
+	public bool FloppyTwoEnabled = true;
+	public bool FloppyThreeEnabled = true;
+
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

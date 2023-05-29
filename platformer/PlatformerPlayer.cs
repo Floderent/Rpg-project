@@ -9,31 +9,43 @@ public partial class PlatformerPlayer : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-    public Area2D ActionnableFinder;
+	public Area2D ActionnableFinder;
 
 
-    public override void _Ready()
-    {     
-        ActionnableFinder = GetNode<Area2D>("Direction/ActionnableFinder");
-    }
-    public override void _Process(double delta)
+	public override void _Ready()
+	{     
+		ActionnableFinder = GetNode<Area2D>("ActionnableFinder");
+	}
+	public override void _Process(double delta)
 	{
-		ChangeAnimation();
-		CollectObject();
+		State state = (State)GetNode("/root/State");
+		if (state.CanMove)
+		{
+			ChangeAnimation();
+		}
 	}
 
-	private void CollectObject()
+	public override void _Input(InputEvent @event)
 	{
-        var actionnables = ActionnableFinder.GetOverlappingAreas();
-        if (actionnables.Count > 0)
-        {
+		State state = (State)GetNode("/root/State");
+		if (state.CanMove && @event.IsActionPressed("interact"))
+		{
+			Interact();
+		}
+	}
+
+	private void Interact()
+	{
+		var actionnables = ActionnableFinder.GetOverlappingAreas();
+		if (actionnables.Count > 0)
+		{
 			foreach(Area2D actionnableArea in actionnables)
 			{
 				var actionnable = (Actionnable)actionnableArea;
 				actionnable.Action();
 			}            
-        }
-    }
+		}
+	}
 	
 	private void ChangeAnimation() {
 		
@@ -68,29 +80,39 @@ public partial class PlatformerPlayer : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		State state = (State)GetNode("/root/State");
 
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-			velocity.Y = JumpVelocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
+		if (state.CanMove)
 		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
+			Vector2 velocity = Velocity;
 
-		Velocity = velocity;
-		MoveAndSlide();
+			// Add the gravity.
+			if (!IsOnFloor())
+			{
+				velocity.Y += gravity * (float)delta;
+			}
+
+			// Handle Jump.
+			if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+			{
+				velocity.Y = JumpVelocity;
+			}
+
+			// Get the input direction and handle the movement/deceleration.
+			// As good practice, you should replace UI actions with custom gameplay actions.
+			Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+			if (direction != Vector2.Zero)
+			{
+				velocity.X = direction.X * Speed;
+			}
+			else
+			{
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			}
+
+			Velocity = velocity;
+			MoveAndSlide();
+		}        
 	}
+
 }

@@ -1,0 +1,7 @@
+~ start
+
+set State.CanMove = false
+Troisième disquette ancestrale: La première version du langage que recherché par le Gardien Floppy est apparue en 1995
+set State.FloppyThreeEnabled = true
+set State.CanMove = true
+=> END

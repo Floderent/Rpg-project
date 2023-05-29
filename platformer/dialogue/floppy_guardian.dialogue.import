@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://d1alsl0akerp6"
+path="res://.godot/imported/floppy_guardian.dialogue-55a16ac3e83d5ccaa1a2730f71fecfc9.tres"
+
+[deps]
+
+source_file="res://platformer/dialogue/floppy_guardian.dialogue"
+dest_files=["res://.godot/imported/floppy_guardian.dialogue-55a16ac3e83d5ccaa1a2730f71fecfc9.tres"]
+
+[params]
+

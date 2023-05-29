@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://shmlpxadm23a"]
+
+[ext_resource type="Texture2D" uid="uid://dnegk23vrvt6g" path="res://assets/platformer/FloppyFrames.png" id="1_047v0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mralx"]
+atlas = ExtResource("1_047v0")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4lb5"]
+atlas = ExtResource("1_047v0")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uc6d1"]
+atlas = ExtResource("1_047v0")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hy20"]
+atlas = ExtResource("1_047v0")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iuspb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mralx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4lb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uc6d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hy20")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mvyy"]
+size = Vector2(18, 24)
+
+[node name="Floppy" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_iuspb")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.861768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_8mvyy")

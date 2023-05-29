@@ -37,7 +37,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		State state = (State)GetNode("/root/State");        
+		State state = (State)GetNode("/root/State");
 
 		if (state.CanMove)
 		{

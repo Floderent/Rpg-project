@@ -1,0 +1,29 @@
+~ start
+
+set State.CanMove = false
+Gardien Floppy: Salutation aventurier !
+if false
+	Gardien Floppy: Consulte les disquettes pour t'approprier leur sagesse, afin de passer l'épreuve
+	set State.CanMove = true
+	=> END
+else
+	Gardien Floppy: D'après les disquettes ancestrales, quelle est le langage informatique que je recherche ?
+	- Cobol
+		Gardien Floppy: Ce n'est pas le langage que je recherche
+		set State.CanMove = true
+		=> END
+	- C#
+		Gardien Floppy: Ce n'est pas le langage que je recherche
+		set State.CanMove = true
+		=> END
+	- Java
+		Gardien Floppy: C'est bien le langage que je recherche ! Tu as remporté l'épreuve !
+		do emit("GoToPlain")
+		set State.CanMove = true
+		=> END
+	- Visual Basic
+		Gardien Floppy: Ce n'est pas le langage que je recherche
+		set State.CanMove = true
+		=> END
+set State.CanMove = true
+=> END
