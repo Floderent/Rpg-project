@@ -1,0 +1,7 @@
+~ start
+
+set State.CanMove = false
+Première disquette ancestrale: Le langage que recherche le Gardien Floppy est un langage objet
+set State.FloppyOneEnabled = true
+set State.CanMove = true
+=> END

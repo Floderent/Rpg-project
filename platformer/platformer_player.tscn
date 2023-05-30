@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4wdw07pr6vs0"]
+[gd_scene load_steps=14 format=3 uid="uid://c4wdw07pr6vs0"]
 
 [ext_resource type="Texture2D" uid="uid://bxpexwkpm0ry7" path="res://assets/platformer/Clean-Retro-Lines-Player-Plain.png" id="1_h3lqk"]
 [ext_resource type="Script" path="res://platformer/PlatformerPlayer.cs" id="1_pa60f"]
@@ -80,6 +80,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iys8t"]
 size = Vector2(8, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3wgu"]
+size = Vector2(8, 14)
+
 [node name="PlatformerPlayer" type="CharacterBody2D"]
 script = ExtResource("1_pa60f")
 
@@ -90,3 +93,11 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_iys8t")
+
+[node name="ActionnableFinder" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionnableFinder"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_d3wgu")

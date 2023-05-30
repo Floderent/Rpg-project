@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bvldko3l3pkvg"
+path="res://.godot/imported/bugger.dialogue-0b18df22818d36321f87be2dd550fed6.tres"
+
+[deps]
+
+source_file="res://levels/house_map/dialogue/bugger.dialogue"
+dest_files=["res://.godot/imported/bugger.dialogue-0b18df22818d36321f87be2dd550fed6.tres"]
+
+[params]
+

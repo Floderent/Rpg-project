@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bs4kd25suihvg"
+path="res://.godot/imported/floppy_two.dialogue-e8935e052f4f178aa4151c1ba6e9e9b0.tres"
+
+[deps]
+
+source_file="res://platformer/dialogue/floppy_two.dialogue"
+dest_files=["res://.godot/imported/floppy_two.dialogue-e8935e052f4f178aa4151c1ba6e9e9b0.tres"]
+
+[params]
+

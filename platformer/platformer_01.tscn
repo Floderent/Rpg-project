@@ -1,8 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://ybepsj21g5lx"]
+[gd_scene load_steps=19 format=3 uid="uid://ybepsj21g5lx"]
 
 [ext_resource type="TileSet" uid="uid://dov6op1o5sik0" path="res://platformer/platformer_terrain.tres" id="1_6rocw"]
 [ext_resource type="Script" path="res://platformer/Platformer01.cs" id="1_fjjn3"]
 [ext_resource type="PackedScene" uid="uid://c4wdw07pr6vs0" path="res://platformer/platformer_player.tscn" id="2_ykma6"]
+[ext_resource type="PackedScene" uid="uid://shmlpxadm23a" path="res://platformer/floppy.tscn" id="4_vk5lm"]
+[ext_resource type="PackedScene" uid="uid://fcjdy0cxig0v" path="res://helpers/Actionnable.tscn" id="5_llw31"]
+[ext_resource type="Texture2D" uid="uid://c8lo2eg80onot" path="res://assets/platformer/gatekeeper.png" id="5_rkmck"]
+[ext_resource type="Resource" uid="uid://b83d4ntei5hol" path="res://platformer/dialogue/floppy_one.dialogue" id="6_q3q37"]
+[ext_resource type="Resource" uid="uid://d1alsl0akerp6" path="res://platformer/dialogue/floppy_guardian.dialogue" id="8_av0ca"]
+[ext_resource type="Resource" uid="uid://bs4kd25suihvg" path="res://platformer/dialogue/floppy_two.dialogue" id="9_q3luh"]
+[ext_resource type="Resource" uid="uid://bmlxd2jo68d4u" path="res://platformer/dialogue/floppy_three.dialogue" id="10_278do"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2xpl"]
+size = Vector2(16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17tei"]
+atlas = ExtResource("5_rkmck")
+region = Rect2(0, 0, 15, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unt2f"]
+atlas = ExtResource("5_rkmck")
+region = Rect2(15, 0, 15, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdjo6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17tei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unt2f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56lb5"]
+size = Vector2(11, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iudfy"]
+radius = 5.02494
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16wuk"]
+size = Vector2(17, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qibrl"]
+size = Vector2(16, 20)
 
 [node name="Platformer01" type="Node2D"]
 script = ExtResource("1_fjjn3")
@@ -14,3 +58,54 @@ layer_0/tile_data = PackedInt32Array(917504, 0, 0, 917505, 65536, 0, 917506, 131
 
 [node name="PlatformerPlayer" parent="." instance=ExtResource("2_ykma6")]
 position = Vector2(31, 205)
+
+[node name="Floppy1" parent="." instance=ExtResource("4_vk5lm")]
+position = Vector2(300, 261)
+
+[node name="Actionnable" parent="Floppy1" instance=ExtResource("5_llw31")]
+DialogueResource = ExtResource("6_q3q37")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floppy1/Actionnable"]
+position = Vector2(-1, -5)
+shape = SubResource("RectangleShape2D_l2xpl")
+
+[node name="FloppyGuardian" type="StaticBody2D" parent="."]
+position = Vector2(1121, 259)
+scale = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FloppyGuardian"]
+sprite_frames = SubResource("SpriteFrames_jdjo6")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloppyGuardian"]
+visible = false
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_56lb5")
+
+[node name="Actionnable" parent="FloppyGuardian" instance=ExtResource("5_llw31")]
+DialogueResource = ExtResource("8_av0ca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloppyGuardian/Actionnable"]
+position = Vector2(-8.5, 1.5)
+shape = SubResource("CircleShape2D_iudfy")
+
+[node name="Floppy2" parent="." instance=ExtResource("4_vk5lm")]
+position = Vector2(495, 229)
+
+[node name="Actionnable" parent="Floppy2" instance=ExtResource("5_llw31")]
+DialogueResource = ExtResource("9_q3luh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floppy2/Actionnable"]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_16wuk")
+
+[node name="Floppy3" parent="." instance=ExtResource("4_vk5lm")]
+position = Vector2(770, 209)
+
+[node name="Actionnable" parent="Floppy3" instance=ExtResource("5_llw31")]
+DialogueResource = ExtResource("10_278do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floppy3/Actionnable"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_qibrl")
